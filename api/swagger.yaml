@@ -1,0 +1,12 @@
+swagger: "2.0"
+
+info:
+  title: Software Engineering 2 Project
+  description: This project is a software implementation of the original mockup realized during the Software Engineering 2 class at the University of Trento.
+  version: 1.0.0
+schemes:
+  - https
+host: arcane-cove-53970.herokuapp.com
+basePath: /
+
+paths: {}

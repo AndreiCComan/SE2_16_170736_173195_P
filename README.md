@@ -19,3 +19,6 @@ http://127.0.0.1:5000
 ```
 ### Demo
 Demo on Heroku: https://goo.gl/Aqbvuc
+
+### API
+API on Swagger: https://goo.gl/uMEj54

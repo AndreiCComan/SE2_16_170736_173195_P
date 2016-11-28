@@ -66,4 +66,27 @@ $(document).ready(function () {
         descriptionPreview.attr("data-status", "opened");
         descriptionPreview.fadeIn("fast");
     });
+
+    //Smooth scrolling
+    // Add smooth scrolling to all links in navbar + footer link
+    $(".navbar a").on('click', function (event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - 50
+            }, 800, function () {
+                $('button[data-target="#theNavbar"]').trigger("click").removeClass("active");
+            });
+        } // End if
+    });
 });

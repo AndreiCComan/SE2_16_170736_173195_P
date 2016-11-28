@@ -203,18 +203,17 @@
 }
 
 /** DEPARTMENTS SECTION PROPERTIES **/
-
-
 .figure-wrap {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 0px 5px;
+    height: 280px;
     overflow: hidden;
     margin-bottom: 10px;
 }
 
 .figure-effect {
-    height: 280px;
-    background: #009688;
+    height: 100%;
+    width: 100%;
+    background: #3498db;
 }
 
 .figure-effect img {
@@ -285,28 +284,54 @@
 }
 
 /** MAP SECTION PROPERTIES **/
+.form-wrap, .transit-result-wrap{
+    padding: 0px 5px 0px 5px;
+    height: 130px;
+    margin-bottom: 10px;
+}
 
-
-
-.form-wrap{
-    margin: 5px;
-    padding: 15px;
-    background-color: #3498db;
+.form-style{
+  padding: 15px;
+  background-color: #3498db;
+  height: 100%;
 }
 
 .form-style input{
     font-size: 20px;
+    font-weight: 200;
     width: 100%;
-    padding-left: 5px;
+    padding-left: 7px;
     margin-bottom: 10px;
     border: none;
 }
 
 .form-style button{
     font-size: 15px;
+    font-weight: 200;
     border: none;
     color: #fff;
     background-color: #2473a6;
+}
+
+.transit-result{
+    background-color: #3498db;
+    height: 100%;
+    width: 100%;
+}
+
+.bus-number{
+    height: 75%;
+    background-color: #f1c40f;
+    font-size: 60px;
+    font-weight: 200;
+    padding-top: 5px;
+}
+
+.bus-timetable{
+    font-weight: 200;
+    font-size: 20px;
+    color: #fff;
+    padding-top: 2px;
 }
 
 /** INFO SECTION PROPERTIES **/

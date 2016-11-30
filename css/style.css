@@ -383,6 +383,7 @@ form>button:hover{
 .map-info-row{
     display: none;
 }
+
 .map-info-wrap{
     height: 30px;
     padding: 0px 5px 0px 5px;
@@ -392,6 +393,22 @@ form>button:hover{
     height: 100%;
     font-size: 15px;
     font-weight: 200;
+}
+
+.loading-message{
+    display: none;
+    font-size: 15px;
+    font-weight: 200;
+    color: #fff;
+}
+
+.alert-wrap{
+    padding: 0px 5px 0px 5px;
+    display: none;
+}
+.alert{
+    border-radius: 0px;
+    margin-bottom: 10px;
 }
 
 /** INFO SECTION PROPERTIES **/

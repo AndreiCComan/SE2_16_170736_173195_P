@@ -46,17 +46,25 @@ app.post("/getMap", function (req, res) {
         },
         function (err, result) {
             if (err) {
-                console.log(err);
-            } //DA GESTIRE IL CASO IN CUI GOOGLE FALLISCE, server crasha
-            console.log("Response sent back to the request!");
-            result = JSON.parse(result);
-            var polylineDecoded = polyline.decode(result.routes[0].overview_polyline.points);
-            var latlng = [];
-            polylineDecoded.map(function (item) {
-                latlng.push({lat:item[0], lng: item[1]});
-            });
-            result.routes[0].convertedLatLng = latlng;
-            res.send(result);
+                console.log("Google Maps ERROR: " + err); //QUANDO SI PUO' VERIFICARE?
+            } else {
+                result = JSON.parse(result);
+                if (result.status != "NOT_FOUND") {
+                    var polylineDecoded = polyline.decode(result.routes[0].overview_polyline.points);
+                    var latlng = [];
+                    polylineDecoded.map(function (item) {
+                        latlng.push({
+                            lat: item[0],
+                            lng: item[1]
+                        });
+                    });
+                    result.routes[0].convertedLatLng = latlng;
+                    res.send(result);
+                } else {
+                    res.status(449).send('googleMapsError');
+                }
+                console.log("Response sent back to the request!");
+            }
         }
     );
 });

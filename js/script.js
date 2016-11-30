@@ -139,6 +139,10 @@ $(document).ready(function () {
     //MapRequestForm
     $("#mapForm").on("submit", function (event) {
         event.preventDefault();
+        var button = $(this).find("button");
+        var loadingMessage = $(".loading-message");
+        button.hide();
+        loadingMessage.show();
         var mode = $('.transit-option[data-status="activated"]').attr("data-mode");
         $.ajax({
             url: '/getMap?',
@@ -146,9 +150,13 @@ $(document).ready(function () {
             data: $(this).serialize() + "&mode=" + mode,
             dataType: "json",
             success: function (data) {
-                //alert("Success!");
+                
+                $(".alert-wrap").hide();
+                loadingMessage.hide();
+                button.show();
                 $(".map-info-row").show();
                 $(".map-wrap").show();
+                
                 console.log(data);
                 $('input[name="departure"]').val(data.routes[0].legs[0].start_address);
                 $('input[name="arrival"]').val(data.routes[0].legs[0].end_address);
@@ -162,7 +170,12 @@ $(document).ready(function () {
                 initMap(arrayLatLng,departureLocation,arrivalLocation);
             },
             error: function (data) {
-                alert('Failed!');
+                console.log(data.responseText);
+                loadingMessage.hide();
+                button.show();
+                $(".alert-wrap").show("low");
+                $(".map-info-row").hide();
+                $(".map-wrap").hide();
             }
         });
     });

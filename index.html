@@ -163,6 +163,13 @@
             <div class="row text-center">
                 <h2 class="map-title">SEE MAP <span>INDICATIONS</span></h2>
             </div>
+            <div class="row">
+                <div class="alert-wrap col-lg-4 col-sm-4">
+                    <div class="alert alert-danger">
+                        <strong>Ops!</strong> Inserted street was not found
+                    </div>
+                </div>
+            </div>
             <div class="row transit-options-row">
                 <div class="col-lg-4 col-md-4 col-sm-6 transit-options-wrap">
                     <div class="col-lg-12 col-xs-12 transit-options">
@@ -191,9 +198,11 @@
                             <input type="text" name="arrival" placeholder="Arrival" required/>
                             <br/>
                             <button>Submit</button>
+                            <span class="loading-message"><i class="fa fa-cog fa-spin fa-fw"></i> Loading map...</span>
                         </form>
                     </div>
                 </div>
+                <!--
                 <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
                     <div class="bus-result">
                         <div class="bus-number text-center">
@@ -234,21 +243,27 @@
                         </div>
                     </div>
                 </div>
+-->
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+
+                </div>
             </div>
             <div class="row map-info-row">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
-                  <div class="map-info">
-                      <span><b>DISTANCE </b></span><span class="distance-map-info"></span>
-                  </div>
+                    <div class="map-info">
+                        <span><b>DISTANCE </b></span><span class="distance-map-info"></span>
+                    </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
-                  <div class="map-info">
-                      <span><b>DURATION </b></span><span class="duration-map-info"></span>
-                  </div>
+                    <div class="map-info">
+                        <span><b>DURATION </b></span><span class="duration-map-info"></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="map-wrap col-lg-12 ">
+                <div class="map-wrap col-lg-12">
                     <div class="embed-responsive embed-responsive-16by9">
                         <div class="embed-responsive-item" id="mapdraw">
                         </div>

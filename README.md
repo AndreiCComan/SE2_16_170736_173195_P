@@ -18,7 +18,7 @@ Finally open the browser and type
 http://127.0.0.1:5000
 ```
 ### Demo
-Demo on Heroku: https://goo.gl/Aqbvuc
+Demo on Heroku: https://goo.gl/m97Xxb
 
 ### API
-API on Swagger: https://goo.gl/uMEj54
+API on Swagger: https://goo.gl/2n9f8v

@@ -85,8 +85,91 @@ $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: $(hash).offset().top - 50
             }, 800, function () {
-                $('button[data-target="#theNavbar"]').trigger("click").removeClass("active");
+                $("#theNavbar").collapse("hide");
+                $('button[data-target="#theNavbar"]').removeClass("active");
+                //old implementation $('button[data-target="#theNavbar"]').trigger("click").removeClass("active");
             });
         } // End if
+    });
+
+    //Tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    //MAP SECTION
+    function initMap(arrayLatLng, departureLocation, arrivalLocation) {
+        var map = new google.maps.Map(document.getElementById('mapdraw'), {
+            zoom: 15,
+            center: {
+                lat: departureLocation.lat,
+                lng: departureLocation.lng
+            },
+            mapTypeId: 'roadmap'
+        });
+
+        //route
+        var routeCoordinates = arrayLatLng;
+        var routePath = new google.maps.Polyline({
+            path: routeCoordinates,
+            geodesic: true,
+            strokeColor: '#8e44ad',
+            strokeOpacity: 0.7,
+            strokeWeight: 4
+        });
+        routePath.setMap(map);
+        
+        //markerDeparture
+        var markerDeparture = new google.maps.Marker({
+            position: departureLocation,
+            map: map,
+            label: 'A',
+        });
+        markerDeparture.setMap(map);
+        
+        //markerArrival
+        var markerArrival = new google.maps.Marker({
+            position: arrivalLocation,
+            map: map,
+            label: 'B',
+        });
+        markerArrival.setMap(map);
+
+    }
+
+    //MapRequestForm
+    $("#mapForm").on("submit", function (event) {
+        event.preventDefault();
+        var mode = $('.transit-option[data-status="activated"]').attr("data-mode");
+        $.ajax({
+            url: '/getMap?',
+            type: "POST",
+            data: $(this).serialize() + "&mode=" + mode,
+            dataType: "json",
+            success: function (data) {
+                //alert("Success!");
+                $(".map-info-row").show();
+                $(".map-wrap").show();
+                console.log(data);
+                $('input[name="departure"]').val(data.routes[0].legs[0].start_address);
+                $('input[name="arrival"]').val(data.routes[0].legs[0].end_address);
+                var arrayLatLng = data.routes[0].convertedLatLng;
+                var departureLocation = data.routes[0].legs[0].start_location;
+                var arrivalLocation = data.routes[0].legs[0].end_location;
+                var distance = data.routes[0].legs[0].distance.text;
+                var duration = data.routes[0].legs[0].duration.text;
+                $(".distance-map-info").text(distance);
+                $(".duration-map-info").text(duration);
+                initMap(arrayLatLng,departureLocation,arrivalLocation);
+            },
+            error: function (data) {
+                alert('Failed!');
+            }
+        });
+    });
+
+    $(".transit-option").click(function () {
+        $('.transit-option[data-status="activated"]').attr("data-status", "deactivated");
+        $(this).attr("data-status", "activated");
+        $("#mapForm").find("button").click();
     });
 });

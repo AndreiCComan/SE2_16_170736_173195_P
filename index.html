@@ -11,10 +11,10 @@
     <link rel="shortcut icon" type="image/ico" href="img/uni_seal_favicon.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://use.fontawesome.com/b5ae9d744a.js"></script>
 </head>
 
 <body>
-
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -163,20 +163,39 @@
             <div class="row text-center">
                 <h2 class="map-title">SEE MAP <span>INDICATIONS</span></h2>
             </div>
+            <div class="row transit-options-row">
+                <div class="col-lg-4 col-md-4 col-sm-6 transit-options-wrap">
+                    <div class="col-lg-12 col-xs-12 transit-options">
+                        <div class="col-lg-3 col-xs-3 transit-option text-center" data-toggle="tooltip" title="Bus" data-status="activated" data-mode="transit">
+                            <i class="fa fa-bus" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-lg-3 col-xs-3 transit-option text-center" data-toggle="tooltip" title="Car" data-status="deactivated" data-mode="driving">
+                            <i class="fa fa-car" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-lg-3 col-xs-3 transit-option text-center" data-toggle="tooltip" title="Bicycle" data-status="deactivated" data-mode="biking">
+                            <i class="fa fa-bicycle" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="col-lg-3 col-xs-3 transit-option text-center" data-toggle="tooltip" title="Walk" data-status="deactivated" data-mode="walking">
+                            <i class="fa fa-male" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6 form-wrap">
+                <div class="col-lg-4 col-md-4 col-sm-6 form-wrap">
                     <div class="form-style">
-                        <form action="">
-                            <input type="text" placeholder="Departure" />
+                        <form id="mapForm">
+                            <input type="text" name="departure" placeholder="Departure" required/>
                             <br/>
-                            <input type="text" placeholder="Arrival" />
+                            <input type="text" name="arrival" placeholder="Arrival" required/>
                             <br/>
                             <button>Submit</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-6 transit-result-wrap">
-                    <div class="transit-result">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                    <div class="bus-result">
                         <div class="bus-number text-center">
                             <p>5</p>
                         </div>
@@ -185,8 +204,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-6 transit-result-wrap">
-                    <div class="transit-result">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                    <div class="bus-result">
                         <div class="bus-number text-center">
                             <p>5</p>
                         </div>
@@ -195,8 +214,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-6 transit-result-wrap">
-                    <div class="transit-result">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                    <div class="bus-result">
                         <div class="bus-number text-center">
                             <div>5</div>
                         </div>
@@ -205,13 +224,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-6 transit-result-wrap">
-                    <div class="transit-result">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                    <div class="bus-result">
                         <div class="bus-number text-center">
                             <p>5</p>
                         </div>
                         <div class="bus-timetable text-center">
                             <p>18:05</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row map-info-row">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
+                  <div class="map-info">
+                      <span><b>DISTANCE </b></span><span class="distance-map-info"></span>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
+                  <div class="map-info">
+                      <span><b>DURATION </b></span><span class="duration-map-info"></span>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="map-wrap col-lg-12 ">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <div class="embed-responsive-item" id="mapdraw">
                         </div>
                     </div>
                 </div>
@@ -314,14 +353,6 @@
             </div>
         </div>
     </section>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     <!-- END INFO SECTION -->
 
     <!-- START FOOTER SECTION -->
@@ -333,10 +364,16 @@
     <!-- END FOOTER SECTION -->
 
     <div class="preloader"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/typed.js"></script>
+
+    <!-- START SCRIPT SECTION-->
+    <section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/typed.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1nAzz59XzA1IjRuAeOHn0n-3Mk6sldCU"></script>
+    </section>
+    <!-- END SCRIPT SECTION -->
 </body>
 
 </html>

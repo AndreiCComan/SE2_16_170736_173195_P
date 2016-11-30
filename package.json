@@ -19,6 +19,8 @@
   "homepage": "https://github.com/AndreiCComan/SE2_16_170736_173195_P#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "googlemapsutil": "^0.1.7",
+    "polyline-encoded": "0.0.8"
   }
 }

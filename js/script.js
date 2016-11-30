@@ -41,6 +41,9 @@ $(document).ready(function () {
                 loop: true
             });
         });
+        setTimeout(function () {
+            $(".welcome-iframe").attr("src", "https://www.youtube.com/embed/wvQEHOyoxJ4");
+        }, 400);
     });
 
     // SLIDEANIM
@@ -117,7 +120,7 @@ $(document).ready(function () {
             strokeWeight: 4
         });
         routePath.setMap(map);
-        
+
         //markerDeparture
         var markerDeparture = new google.maps.Marker({
             position: departureLocation,
@@ -125,7 +128,7 @@ $(document).ready(function () {
             label: 'A',
         });
         markerDeparture.setMap(map);
-        
+
         //markerArrival
         var markerArrival = new google.maps.Marker({
             position: arrivalLocation,
@@ -150,13 +153,13 @@ $(document).ready(function () {
             data: $(this).serialize() + "&mode=" + mode,
             dataType: "json",
             success: function (data) {
-                
+
                 $(".alert-wrap").hide();
                 loadingMessage.hide();
                 button.show();
                 $(".map-info-row").show();
                 $(".map-wrap").show();
-                
+
                 console.log(data);
                 $('input[name="departure"]').val(data.routes[0].legs[0].start_address);
                 $('input[name="arrival"]').val(data.routes[0].legs[0].end_address);
@@ -167,10 +170,22 @@ $(document).ready(function () {
                 var duration = data.routes[0].legs[0].duration.text;
                 $(".distance-map-info").text(distance);
                 $(".duration-map-info").text(duration);
-                initMap(arrayLatLng,departureLocation,arrivalLocation);
+                initMap(arrayLatLng, departureLocation, arrivalLocation);
             },
             error: function (data) {
                 console.log(data.responseText);
+                var response = data.responseText;
+                var message = $('span[class="message"]');
+                switch (response) {
+                    case "NOT_FOUND":
+                        message.text("Street not found");
+                        break;
+                    case "ZERO_RESULTS":
+                        message.text("Try the airport my man"); //EASTER EGG :)
+                        break;
+                    default:
+                        message.text("Unexpected error"); //GESTIRE QUESTO CASO
+                }
                 loadingMessage.hide();
                 button.show();
                 $(".alert-wrap").show("low");

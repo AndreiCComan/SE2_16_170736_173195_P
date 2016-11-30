@@ -50,9 +50,7 @@
                 <div class="col-lg-offset-1 col-lg-10">
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                        <!--
-                        <iframe class="embed-responsive-item" allowFullScreen="allowFullScreen" src="https://www.youtube.com/embed/wvQEHOyoxJ4"></iframe>
-                        -->
+                        <iframe class="embed-responsive-item welcome-iframe" allowFullScreen="allowFullScreen"></iframe>
                     </div>
                 </div>
             </div>
@@ -166,7 +164,7 @@
             <div class="row">
                 <div class="alert-wrap col-lg-4 col-sm-4">
                     <div class="alert alert-danger">
-                        <strong>Ops!</strong> Inserted street was not found
+                        <strong>Ops!</strong> <span class="message"></span>
                     </div>
                 </div>
             </div>
@@ -251,12 +249,12 @@
                 </div>
             </div>
             <div class="row map-info-row">
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 map-info-wrap">
                     <div class="map-info">
                         <span><b>DISTANCE </b></span><span class="distance-map-info"></span>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 map-info-wrap">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 map-info-wrap">
                     <div class="map-info">
                         <span><b>DURATION </b></span><span class="duration-map-info"></span>
                     </div>
@@ -264,10 +262,7 @@
             </div>
             <div class="row">
                 <div class="map-wrap col-lg-12">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <div class="embed-responsive-item" id="mapdraw">
-                        </div>
-                    </div>
+                    <div id="mapdraw"></div>
                 </div>
             </div>
         </div>

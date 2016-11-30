@@ -49,7 +49,8 @@ app.post("/getMap", function (req, res) {
                 console.log("Google Maps ERROR: " + err); //QUANDO SI PUO' VERIFICARE?
             } else {
                 result = JSON.parse(result);
-                if (result.status != "NOT_FOUND") {
+                console.log("Google Maps status = " + result.status);
+                if (result.status != "NOT_FOUND" && result.status != "ZERO_RESULTS") {
                     var polylineDecoded = polyline.decode(result.routes[0].overview_polyline.points);
                     var latlng = [];
                     polylineDecoded.map(function (item) {
@@ -61,7 +62,7 @@ app.post("/getMap", function (req, res) {
                     result.routes[0].convertedLatLng = latlng;
                     res.send(result);
                 } else {
-                    res.status(449).send('googleMapsError');
+                    res.status(449).send(result.status);
                 }
                 console.log("Response sent back to the request!");
             }

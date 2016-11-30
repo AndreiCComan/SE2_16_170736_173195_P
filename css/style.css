@@ -377,7 +377,11 @@ form>button:hover{
     padding-left: 5px;
     padding-right: 5px;
     display: none;
-    height: 40%;
+    height: 400px;
+}
+
+#mapdraw{
+    height: 100%;
 }
 
 .map-info-row{
@@ -406,9 +410,11 @@ form>button:hover{
     padding: 0px 5px 0px 5px;
     display: none;
 }
+
 .alert{
     border-radius: 0px;
     margin-bottom: 10px;
+
 }
 
 /** INFO SECTION PROPERTIES **/

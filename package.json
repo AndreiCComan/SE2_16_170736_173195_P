@@ -1,0 +1,26 @@
+{
+  "name": "se2_16_170736_173195_p",
+  "version": "1.0.0",
+  "description": "Software Engineering 2 Project",
+  "main": "welcome.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node welcome.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreiCComan/SE2_16_170736_173195_P.git"
+  },
+  "author": "Andrei Catalin Coman & Cosimo Damiano Persia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreiCComan/SE2_16_170736_173195_P/issues"
+  },
+  "homepage": "https://github.com/AndreiCComan/SE2_16_170736_173195_P#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "googlemapsutil": "^0.1.7",
+    "polyline-encoded": "0.0.8"
+  }
+}

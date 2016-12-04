@@ -9,4 +9,26 @@ schemes:
 host: arcane-cove-53970.herokuapp.com
 basePath: /
 
-paths: {}
+paths:
+  /getMap:
+    post:
+        summary: get the path throught the destination, starting from the inserted street.
+        description: send the departure and arrival point and return all the information needed to the path.
+        parameters:
+          - name: departure
+            in: body
+            description: departure point
+            schema:
+              required: 
+                - departure
+                - arrival
+              properties:
+                departure:
+                  type: string
+                arrival:
+                  type: string
+        responses:
+          200:
+            description: return a JSON which contains an array of coordinates, departure and arrival location, route distance and route duration.
+          449:
+            description: the departure and arrival points are not linked by any path in our database.

@@ -21,6 +21,8 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "googlemapsutil": "^0.1.7",
-    "polyline-encoded": "0.0.8"
+    "jasmine": "^2.5.2",
+    "polyline-encoded": "0.0.8",
+    "request": "^2.79.0"
   }
 }

@@ -24,7 +24,7 @@ app.use(express.static(__dirname + "/"));
 
 //Get Google Maps API Directions
 app.post("/getMap", function (req, res) {
-	
+
     res.setHeader('Content-Type', 'application/json');
 
     var departure = req.body.departure;
@@ -43,21 +43,24 @@ app.post("/getMap", function (req, res) {
 
     googleMapsUtil.directions(
         departure,
-        arrival, 
-		{mode: mode},
+        arrival, {
+            mode: mode
+        },
         function (err, result) {
             if (err) {
                 console.log("Google Maps ERROR: " + err); //QUANDO SI PUO' VERIFICARE? Quando cade la connessione
             } else {
                 result = JSON.parse(result);
                 console.log("Google Maps status = " + result.status);
-                if (result.status != "NOT_FOUND" && 
-					result.status != "ZERO_RESULTS" && 
-					result.status != "INVALID_REQUEST"){
-						result = model.buildObjectStructure(result);
-                    	res.status(200).send(result);
+                if (result.status == "OK") {
+                    result = model.buildObjectStructure(result);
+                    res.status(200).send(result);
+                } else if (result.status == "NOT_FOUND" &&
+                    result.status == "ZERO_RESULTS" &&
+                    result.status == "INVALID_REQUEST") {
+                    res.status(449).send(result.status);
                 } else {
-                    	res.status(449).send(result.status);
+                    res.status(404).send(result.status);
                 }
                 console.log("Response sent back to the request!");
             }

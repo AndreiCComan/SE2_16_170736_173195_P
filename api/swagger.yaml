@@ -6,7 +6,7 @@ info:
   version: 1.0.0
 schemes:
   - https
-host: arcane-cove-53970.herokuapp.com
+host: enigmatic-savannah-48655.herokuapp.com
 basePath: /
 
 paths:
@@ -19,7 +19,7 @@ paths:
             in: body
             description: departure point
             schema:
-              required: 
+              required:
                 - departure
                 - arrival
               properties:
@@ -30,5 +30,40 @@ paths:
         responses:
           200:
             description: return a JSON which contains an array of coordinates, departure and arrival location, route distance and route duration.
+            schema:
+              type: object
+              properties:
+                departureAddress:
+                  type: string
+                departureLocation:
+                  $ref: "#/definitions/Location"
+                arrivalAddress:
+                  type: string
+                arrivalLocation:
+                  $ref: "#/definitions/Location"
+                routeDistance:
+                  type: string
+                routeDutation:
+                  type: string
+                polyline:
+                  $ref: "#/definitions/polyline"
           449:
             description: the departure and arrival points are not linked by any path in our database.
+
+definitions:
+    Location:
+      type: object
+      properties:
+        lat:
+          type: number
+        lng:
+          type: number
+    polyline:
+      type: array
+      items:
+        type: object
+        properties:
+          lat:
+            type: number
+          lng:
+            type: number

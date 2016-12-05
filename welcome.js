@@ -53,7 +53,7 @@ app.post("/getMap", function (req, res) {
                 result = JSON.parse(result);
                 console.log("Google Maps status = " + result.status);
                 if (result.status == "OK") {
-                    result = model.buildObjectStructure(result);
+                    result = model.buildObjectStructureDirections(result);
                     res.status(200).send(result);
                 } else if (result.status == "NOT_FOUND" &&
                     result.status == "ZERO_RESULTS" &&
@@ -66,6 +66,30 @@ app.post("/getMap", function (req, res) {
             }
         }
     );
+});
+
+app.post("/getPosition", function (req, res){
+	res.setHeader('Content-Type', 'application/json');
+	var lat = req.body.latitude;
+	var lng = req.body.longitude;
+	console.log("-----------------------------------");
+    console.log("Latitude received = " + lat);
+    console.log("Longitude received = " + lng);
+    console.log("-----------------------------------");
+	googleMapsUtil.reverseGeocoding(
+		46.0481139, 
+		11.1346663,
+		null,
+		function(err, result){ //GESTIRE CASO DI ERRORE
+			if (err) {
+                console.log("Google Maps ERROR: " + err); //QUANDO SI PUO' VERIFICARE? Quando cade la connessione
+            } else{
+			result = JSON.parse(result);
+			var address = result.results[0].formatted_address;
+			var objectToReturn = {"address": address};
+			res.status(200).send(objectToReturn);
+			}
+	});
 });
 
 /** Handle POST and GET requests at / path. The response sent back contains the index page where

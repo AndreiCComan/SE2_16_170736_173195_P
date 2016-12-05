@@ -290,6 +290,31 @@
     font-weight: 200;
 }
 
+a[data-goto="map"]{
+	text-decoration: none;
+	color:#fff;
+}
+
+.loading-position>i,
+.get-position>i {
+    float: right;
+	font-size:20px !important;
+    margin-right: 6px;
+    margin-top: -35px;
+    position: relative;
+	color: #e67e22;
+	transition: color 0.2s ease-in-out;
+}
+
+.loading-position{
+	display: none;
+}
+
+.loading-position>i:hover,
+.get-position>i:hover{
+	color: #d35400;
+}
+
 
 /** MAP SECTION PROPERTIES **/
 

@@ -1,6 +1,6 @@
 var polyline = require('polyline-encoded');
 
-var buildObjectStructure = function (result) {
+var buildObjectStructureDirections = function (result) {
 	//Data fetch
 	var departureLocation = result.routes[0].legs[0].start_location;
 	var departureAddress = result.routes[0].legs[0].start_address;
@@ -30,4 +30,4 @@ var buildObjectStructure = function (result) {
 	return returnObject;
 }
 
-exports.buildObjectStructure = buildObjectStructure;
+exports.buildObjectStructureDirections = buildObjectStructureDirections;

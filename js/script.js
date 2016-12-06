@@ -48,6 +48,8 @@ $(document).ready(function () {
 		var street = $(this).attr("data-street");
 		var inputArrival = $('input[name="arrival"]');
 		inputArrival.val(street);
+		$(".info-message").hide();
+		$(".info-content").show();
 	});
 
 	$('.get-position').click(function () {
@@ -256,16 +258,16 @@ function updateForm(position) {
 	var longitude = position.coords.longitude;
 	//alert(position.coords.latitude + " " + position.coords.longitude);
 	$.ajax({
-			url: '/getPosition?',
-			type: "POST",
-			data: '&latitude=' + latitude + "&longitude=" + longitude,
-			dataType: "json",
-			success: function (data) {
-				inputDeparture.val(data.address);
-			},
-			error: function (data) {
-				console.log(data);
-			}
+		url: '/getUserLocation?',
+		type: "POST",
+		data: '&latitude=' + latitude + "&longitude=" + longitude,
+		dataType: "json",
+		success: function (data) {
+			inputDeparture.val(data.address);
+		},
+		error: function (data) {
+			console.log(data);
+		}
 	});
 }
 
@@ -274,15 +276,19 @@ function showError(error) {
 	switch (error.code) {
 		case error.PERMISSION_DENIED:
 			message.val("User denied the request for Geolocation.");
+			message.show();
 			break;
 		case error.POSITION_UNAVAILABLE:
 			message.val("Location information is unavailable.");
+			message.show()
 			break;
 		case error.TIMEOUT:
 			message.val("The request to get user location timed out.");
+			message.show()
 			break;
 		case error.UNKNOWN_ERROR:
 			message.val("An unknown error occurred.");
+			message.show();
 			break;
 	}
 }

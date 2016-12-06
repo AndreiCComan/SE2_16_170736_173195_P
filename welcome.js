@@ -68,7 +68,7 @@ app.post("/getMap", function (req, res) {
     );
 });
 
-app.post("/getPosition", function (req, res){
+app.post("/getUserLocation", function (req, res){
 	res.setHeader('Content-Type', 'application/json');
 	var lat = req.body.latitude;
 	var lng = req.body.longitude;
@@ -77,8 +77,8 @@ app.post("/getPosition", function (req, res){
     console.log("Longitude received = " + lng);
     console.log("-----------------------------------");
 	googleMapsUtil.reverseGeocoding(
-		46.0481139, 
-		11.1346663,
+		lat, 
+		lng,
 		null,
 		function(err, result){ //GESTIRE CASO DI ERRORE
 			if (err) {

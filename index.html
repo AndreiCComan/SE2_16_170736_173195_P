@@ -90,7 +90,7 @@
                                 <span>PHYSICS</span>
                             </h2>
                             <p>
-                                <span>click for map indications</span>
+                                <a data-goto="map" data-street="Via Sommarive, 14, 38123 Povo, Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
@@ -103,7 +103,7 @@
                                 <span>MATHEMATICS</span>
                             </h2>
                             <p>
-                                <span>click for map indications</span>
+                                <a data-goto="map" data-street="Via Sommarive, 14, 38123 Povo, Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
@@ -117,7 +117,7 @@
                                 <span>COMPUTER SCIENCE</span>
                             </h2>
                             <p>
-                                <span>click for map indications</span>
+                                <a data-goto="map" data-street="Via Giuseppe Verdi, 53, 38122 Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
@@ -131,7 +131,7 @@
                                 <span>MANAGEMENT</span>
                             </h2>
                             <p>
-                                <span>click for map indications</span>
+                                <a data-goto="map" data-street="Via Vigilio Inama, 5, 38122 Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
@@ -145,7 +145,7 @@
                                 <span>SOCIAL RESEARCH</span>
                             </h2>
                             <p>
-                                <span>click for map indications</span>
+                                <a data-goto="map" data-street="Via Giuseppe Verdi, 26, 38122 Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
@@ -162,8 +162,8 @@
                 <h2 class="map-title">SEE MAP <span>INDICATIONS</span></h2>
             </div>
             <div class="row">
-                <div class="alert-wrap col-lg-6 col-lg-offset-3 col-sm-4">
-                    <div class="alert alert-danger">
+                <div class="alert-wrap">
+                    <div class="alert alert-danger col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                         <strong>Ops!</strong> <span class="message"></span>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                         <form id="mapForm">
                             <input type="text" name="departure" placeholder="Departure" required/>
 							<span class="get-position">
-								<i class="fa fa-street-view" data-toggle="tooltip" title="Get Position" aria-hidden="true"></i>
+								<i class="fa fa-street-view" data-toggle="tooltip" title="Get your position" aria-hidden="true"></i>
 							</span>
 							<span class="loading-position"><i class="fa fa-cog fa-spin" aria-hidden="true"></i></span>
                             <br/>
@@ -300,7 +300,7 @@
     <section id="info">
         <div class="container">
             <div class="row text-center">
-                <h2 class="info-title">DEPARTMENT <span>INFORMATIONS</span></h2>
+                <h2 class="info-title">DEPARTMENT <span>INFORMATION</span></h2>
             </div>
             <div class="row info-message">
                 <div class="col-lg-2 col-lg-offset-3 col-md-4 col-md-offset-1 col-sm-4 col-offset-sm-1 col-xs-5 col-offset-xs-0 text-center">
@@ -308,7 +308,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-6 col-xs-7 push-left">
                     <div class="row">
-                        <h3 class="noChoiceTitle">It seems like you have not made any choice...</h3>
+                        <h3 class="noChoiceTitle">It seems that you have not made any choice...</h3>
                     </div>
                     <div class="row">
                         <p class="noChoiceSubTitle">Press this button in order to choose your department</p>
@@ -318,15 +318,15 @@
             </div>
             <div class="row info-content">
                 <div class="col-md-4 col-sm-6 image-selection" data-id="canteen">
-                    <img src="https://goo.gl/62wnOI" />
+                    <img class="img-responsive" src="https://goo.gl/62wnOI" />
                     <h2>UNIVERSITY <br/><span>CANTEEN</span></h2>
                 </div>
                 <div class="col-md-4 col-sm-6 image-selection" data-id="library">
-                    <img src="https://goo.gl/pMq46x" />
+                    <img class="img-responsive" src="https://goo.gl/8Q9ZvV" />
                     <h2>UNIVERSITY <br/><span>LIBRARY</span></h2>
                 </div>
                 <div class="col-md-4 col-sm-6 image-selection" data-id="structure">
-                    <img src="https://goo.gl/8koQOF" />
+                    <img class="img-responsive" src="https://goo.gl/8koQOF" />
                     <h2>UNIVERSITY <br/><span>STRUCTURES</span></h2>
                 </div>
             </div>
@@ -337,11 +337,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 slideanim">
+                    <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <!--
-                            <iframe class="embed-responsive-item" allowFullScreen="allowFullScreen" src="https://www.youtube.com/embed/wvQEHOyoxJ4"></iframe>
-                            -->
+                            <img class="img-responsive" src="https://goo.gl/62wnOI" />
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -361,11 +359,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 slideanim">
+                    <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <!--
-                            <iframe class="embed-responsive-item" allowFullScreen="allowFullScreen" src="https://www.youtube.com/embed/wvQEHOyoxJ4"></iframe>
-                            -->
+                            <img class="img-responsive" src="https://goo.gl/8Q9ZvV" />
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -385,11 +381,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 slideanim">
+                    <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <!--
-                            <iframe class="embed-responsive-item" allowFullScreen="allowFullScreen" src="https://www.youtube.com/embed/wvQEHOyoxJ4"></iframe>
-                            -->
+                            <img class="img-responsive" src="https://goo.gl/8koQOF" />
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -409,7 +403,7 @@
     <!-- START FOOTER SECTION -->
     <footer class="container">
         <div class="row text-center">
-            <span>Made with <span class="glyphicon glyphicon-heart-empty" style="color: #EF5350;"></span> by two friends</span>
+            <span>Made with <span class="glyphicon glyphicon-heart heart"></span> by two friends</span>
         </div>
     </footer>
     <!-- END FOOTER SECTION -->

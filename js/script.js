@@ -1,36 +1,28 @@
+// Wait for the document to be ready
 $(document).ready(function () {
+
 	//Activate navbar toggle and tooltip
 	activateToggle();
 	activateTooltip();
 
+	//Check scoll position in order to change navbar background color
 	if ($('.navbar').length > 0) {
 		$(window).on("scroll load resize", function () {
 			checkScroll();
 		});
 	}
 
+	//After page loaded all content remove preloader
 	$(window).load(function () {
 		showContentPage();
 	});
 
+	//Check scroll position in order to show content with slide in animation
 	$(window).scroll(function () {
 		checkSlideInAnimation();
 	});
 
-	$(document.body).on("click", ".close-preview", function () {
-		var divToClose = $('div[data-status="opened"]');
-		divToClose.attr("data-status", "closed")
-		divToClose.fadeOut("fast");
-	});
-
-	$(document.body).on("click", ".image-selection", function () {
-		var divID = $(this).attr("data-id");
-		var descriptionPreview = $('div[id="' + divID + '"]');
-		descriptionPreview.attr("data-status", "opened");
-		descriptionPreview.fadeIn("fast");
-	});
-
-	//Smooth scrolling
+	//Smooth scrolling animation
 	$('.navbar a, a[data-goto]').on('click', function (event) {
 		if (this.hash !== "") {
 			event.preventDefault();
@@ -44,6 +36,8 @@ $(document).ready(function () {
 		}
 	});
 
+	//After department click hide attention message, 
+	//then show corresponding department content and update the arrival input
 	$('a[data-goto="map"]').click(function () {
 		var street = $(this).attr("data-street");
 		var inputArrival = $('input[name="arrival"]');
@@ -52,17 +46,42 @@ $(document).ready(function () {
 		$(".info-content").show();
 	});
 
+	//After get position icon call the getLocation function
 	$('.get-position').click(function () {
 		$(this).hide();
 		$(".loading-position").show();
 		getLocation();
 	});
 
-	//MapRequestForm
-	$("#mapForm").on("submit", function (event) {
+	//Activate or deactivate the transit mode
+	$(".transit-option").click(function () {
+		$('.transit-option[data-status="activated"]').attr("data-status", "deactivated");
+		$(this).attr("data-status", "activated");
+		$("#mapForm").find("button").click();
+	});
 
+	//Open department info fullscreen preview
+	$(document.body).on("click", ".image-selection", function () {
+		var divID = $(this).attr("data-id");
+		var descriptionPreview = $('div[id="' + divID + '"]');
+		descriptionPreview.attr("data-status", "opened");
+		descriptionPreview.fadeIn("fast");
+	});
+
+	//Close department info fullscreen preview
+	$(document.body).on("click", ".close-preview", function () {
+		var divToClose = $('div[data-status="opened"]');
+		divToClose.attr("data-status", "closed")
+		divToClose.fadeOut("fast");
+	});
+
+	//Map request form
+	$("#mapForm").on("submit", function (event) {
+		
+		//Do not immediately submit the form
 		event.preventDefault();
 
+		//Some DOM reference
 		var button = $(this).find("button");
 		var loadingMessage = $(".loading-message");
 		var mode = $('.transit-option[data-status="activated"]').attr("data-mode");
@@ -79,6 +98,7 @@ $(document).ready(function () {
 		button.hide();
 		loadingMessage.show();
 
+		//Asynchronous call to the server
 		$.ajax({
 			url: '/getMap?',
 			type: "POST",
@@ -127,12 +147,14 @@ $(document).ready(function () {
 						message.text("Street not found");
 						break;
 					case "ZERO_RESULTS":
-						message.text("Try the airport my man"); //EASTER EGG :)
+						message.text("You should check the airport :)"); //EASTER EGG :)
+						break;
+					case "ServiceDirectionsUnavailable":
+						message.text("Google Directions service is not available. Please try again later.");
 						break;
 					default:
-						message.text("Unexpected error"); //GESTIRE QUESTO CASO
+						message.text("Unexpected error. Please reload the page.");
 				}
-
 				loadingMessage.hide();
 				button.show();
 				alertWrap.show("low");
@@ -141,15 +163,12 @@ $(document).ready(function () {
 			}
 		});
 	});
-
-	$(".transit-option").click(function () {
-		$('.transit-option[data-status="activated"]').attr("data-status", "deactivated");
-		$(this).attr("data-status", "activated");
-		$("#mapForm").find("button").click();
-	});
 });
 
-//FUNCTIONS SECTION
+/**FUNCTIONS SECTION
+ */
+
+//Navbar background switch
 function checkScroll() {
 	var startY = $('.navbar').height() * 1.25;
 	if ($(window).scrollTop() > startY) {
@@ -159,16 +178,19 @@ function checkScroll() {
 	}
 }
 
+//Toggle activation
 function activateToggle() {
 	$(".navbar-toggle").on("click", function () {
 		$(this).toggleClass("active");
 	});
 }
 
+//Tooltip activation
 function activateTooltip() {
 	$('[data-toggle="tooltip"]').tooltip();
 }
 
+//Welcome message
 function showContentPage() {
 	$(".preloader").fadeOut("slow");
 	$(function () {
@@ -194,6 +216,7 @@ function showContentPage() {
 	}, 400);
 }
 
+//Slide in animation
 function checkSlideInAnimation() {
 	$(".slideanim").each(function () {
 		var pos = $(this).offset().top;
@@ -204,6 +227,7 @@ function checkSlideInAnimation() {
 	});
 }
 
+//Create map within the page
 function initMap(polyline, departureLocation, arrivalLocation) {
 	var map = new google.maps.Map(document.getElementById('mapdraw'), {
 		zoom: 15,
@@ -242,21 +266,22 @@ function initMap(polyline, departureLocation, arrivalLocation) {
 
 }
 
+//Geolocation
 function getLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(updateForm, showError);
+		navigator.geolocation.getCurrentPosition(successUpdateForm, showError);
 	} else {
 		alert("Geolocation is not supported by this browser.");
 	}
 }
 
-function updateForm(position) {
+//Geolocation success function
+function successUpdateForm(position) {
 	$(".loading-position").hide();
 	$(".get-position").show();
 	var inputDeparture = $('input[name="departure"]');
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
-	//alert(position.coords.latitude + " " + position.coords.longitude);
 	$.ajax({
 		url: '/getUserLocation?',
 		type: "POST",
@@ -266,29 +291,42 @@ function updateForm(position) {
 			inputDeparture.val(data.address);
 		},
 		error: function (data) {
-			console.log(data);
+			console.log(data.responseText);
+			var response = data.responseText;
+			var message = $('span[class="message"]');
+			switch (response) {
+				case "ServiceGeocodingUnavailable":
+					message.text("Google Geocoding service is not available. Please try again later.");
+					break;
+				default:
+					message.text("Unexpected error. Please reload the page.");
+			}
+			alertWrap.show("low");
 		}
 	});
 }
 
+//Geolocation error function
 function showError(error) {
+	console.log(error);
+	var alertWrap = $(".alert-wrap");
+	$(".get-position").show();
+	$(".loading-position").hide();
 	var message = $('span[class="message"]');
 	switch (error.code) {
-		case error.PERMISSION_DENIED:
-			message.val("User denied the request for Geolocation.");
-			message.show();
+		case 1: //PERMISSION_DENIED
+			message.text("It seems that you have not given permission to the website to locate you. You should fill in the form manually.");
+			alertWrap.show("low");
 			break;
-		case error.POSITION_UNAVAILABLE:
-			message.val("Location information is unavailable.");
-			message.show()
+		case 2: //POSITION_UNAVAILABLE
+			message.text("The server was unable to locate you. Please try again later or fill in the form manually.");
+			alertWrap.show("low");
 			break;
-		case error.TIMEOUT:
-			message.val("The request to get user location timed out.");
-			message.show()
+		case 3: //TIMEOUT
+			message.text("Your request took too much time. Please try again later.");
+			alertWrap.show("low");
 			break;
-		case error.UNKNOWN_ERROR:
-			message.val("An unknown error occurred.");
-			message.show();
-			break;
+		default:
+			message.text("Unexpected error. Please reload the page.");	
 	}
 }

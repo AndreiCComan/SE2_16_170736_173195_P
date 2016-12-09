@@ -1,5 +1,12 @@
+/** Import Node.js module
+ */
 var polyline = require('polyline-encoded');
 
+/**
+ * @brief Build the returned object in a more comprehensive way
+ * @param result from the Google API
+ * @return return the built object
+ */
 var buildObjectStructureDirections = function (result) {
 	//Data fetch
 	var departureLocation = result.routes[0].legs[0].start_location;
@@ -16,7 +23,7 @@ var buildObjectStructureDirections = function (result) {
 			lng: item[1]
 		});
 	});
-	
+
 	//Object Construction
 	var returnObject = {};
 	returnObject.polyline = latlng;
@@ -30,4 +37,7 @@ var buildObjectStructureDirections = function (result) {
 	return returnObject;
 }
 
+
+/** Export this module
+*/
 exports.buildObjectStructureDirections = buildObjectStructureDirections;

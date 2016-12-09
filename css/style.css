@@ -302,7 +302,7 @@ a[data-goto="map"]{
     margin-right: 6px;
     margin-top: -35px;
     position: relative;
-	color: #e67e22;
+	color: #34495e;
 	transition: color 0.2s ease-in-out;
 }
 
@@ -312,7 +312,7 @@ a[data-goto="map"]{
 
 .loading-position>i:hover,
 .get-position>i:hover{
-	color: #d35400;
+	color: #16a085;
 }
 
 
@@ -601,6 +601,10 @@ form>button:hover {
 
 .info-content{
 	display: none;
+}
+
+.heart{
+	 color: #EF5350;
 }
 
 /* SLIDEANIMATION */

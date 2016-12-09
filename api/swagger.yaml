@@ -3,6 +3,7 @@ swagger: "2.0"
 info:
   title: Software Engineering 2 Project
   description: This project is a software implementation of the original mockup realized during the Software Engineering 2 class at the University of Trento.
+    Project realized by Cosimo Damiano Persia (173195) and Andrei Catalin Coman (170736).
   version: 1.0.0
 schemes:
   - https
@@ -12,24 +13,22 @@ basePath: /
 paths:
   /getMap:
     post:
-        summary: get the path throught the destination, starting from the inserted street.
-        description: send the departure and arrival point and return all the information needed to the path.
+        summary: Get the path from the destination address to the arrival one.
+        description: Send the departure and arrival address. The server will return all the information needed in order to represent the path on the map.
         parameters:
           - name: departure
-            in: body
-            description: departure point
-            schema:
-              required:
-                - departure
-                - arrival
-              properties:
-                departure:
-                  type: string
-                arrival:
-                  type: string
+            in: query
+            required: true
+            description: Departure address
+            type: string
+          - name: arrival
+            in: query
+            required: true
+            description: Arrival street
+            type: string   
         responses:
           200:
-            description: return a JSON which contains an array of coordinates, departure and arrival location, route distance and route duration.
+            description: Return a JSON which contains an array of coordinates, departure and arrival location, departure and arrival address, route distance and route duration.
             schema:
               type: object
               properties:
@@ -47,8 +46,36 @@ paths:
                   type: string
                 polyline:
                   $ref: "#/definitions/polyline"
+          503:
+            description: Google API service unavailable.
           449:
-            description: the departure and arrival points are not linked by any path in our database.
+            description: The server cannot honour the request because the user has not provided the required information.
+  /getUserLocation:
+    post:
+        summary: Convert coordinates in the corrispondent address.
+        description: Send a request containing a pair of coordinates (latitude and longitude) and receive the corrisponding address.
+        parameters:
+          - name: latitude
+            in: query
+            required: true
+            description: Requester latitude
+            type: number
+          - name: longitude
+            in: query
+            required: true
+            description: Requester longitude
+            type: number  
+        responses:
+          200:
+            description: Return a JSON which contains the address of the coordinates provided within the request.
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+          503:
+            description: Google API service unavailable.
+      
 
 definitions:
     Location:

@@ -28,7 +28,9 @@ We provide a live demo on Heroku: https://goo.gl/m97Xxb
 ### API
 The API can be seen on Swagger: https://goo.gl/2n9f8v
 
+### NOTE
 We considered responsiveness as the most important feature for a modern webiste.
 <br/>
 Here you can see the preview of the website on different devices.
+<br/>
 ![picture alt](/img/mockupWebsite.jpg?raw=true "Website devices")

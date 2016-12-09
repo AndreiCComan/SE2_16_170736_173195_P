@@ -23,4 +23,4 @@ Demo on Heroku: https://goo.gl/m97Xxb
 ### API
 API on Swagger: https://goo.gl/2n9f8v
 
-![Alt text](/img/mockupWebsite?raw=true "Mockup Website")
+![Alt text](/img/mockupWebsite.jpg?raw=true "Mockup Website")

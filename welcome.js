@@ -49,12 +49,6 @@ app.post("/getMap", function (req, res) {
 	var arrival = req.body.arrival;
 	var mode = req.body.mode;
 
-	console.log("-----------------------------------");
-	console.log("Departure received = " + departure);
-	console.log("Arrival received = " + arrival);
-	console.log("Mode received = " + mode);
-	console.log("-----------------------------------");
-
 	if (checkParametersGetMap(departure, arrival, mode)) //check valid parameters
 		res.status(449).send("notValidForm");
 	else {
@@ -71,11 +65,9 @@ app.post("/getMap", function (req, res) {
 			},
 			function (err, result) {
 				if (err) { //check Service availability
-					console.log("Google Maps ERROR: " + err);
 					res.status(503).send("ServiceDirectionsUnavailable");
 				} else {
 					result = JSON.parse(result);
-					console.log("Google Maps status = " + result.status);
 					if (result.status == "OK") {
 						//use the model function in order to build the result that has to be sent as response to the requester
 						result = model.buildObjectStructureDirections(result);
@@ -87,7 +79,6 @@ app.post("/getMap", function (req, res) {
 					} else {
 						res.status(404).send(result.status);
 					}
-					console.log("Response sent back to the requester!");
 				}
 			}
 		);
@@ -108,17 +99,12 @@ app.post("/getUserLocation", function (req, res) {
 	if (checkParametersGetUserLocation(lat, lng)) //check valid parameters
 		res.status(449).send("notValidCoordinates");
 	else {
-		console.log("-----------------------------------");
-		console.log("Latitude received = " + lat);
-		console.log("Longitude received = " + lng);
-		console.log("-----------------------------------");
 		googleMapsUtil.reverseGeocoding(
 			lat,
 			lng,
 			null,
 			function (err, result) {
 				if (err) {
-					console.log("Google Maps ERROR: " + err);
 					res.status(503).send("ServiceGeocodingUnavailable");
 				} else {
 					result = JSON.parse(result);
@@ -130,7 +116,6 @@ app.post("/getUserLocation", function (req, res) {
 				}
 			}
 		);
-		console.log("Response sent back to the requester!");
 	}
 });
 

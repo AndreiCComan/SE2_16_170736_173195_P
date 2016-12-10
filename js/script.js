@@ -105,8 +105,6 @@ $(document).ready(function () {
 			data: $(this).serialize() + "&mode=" + mode,
 			dataType: "json",
 			success: function (data) {
-				console.log(data);
-
 				var polyline = data.polyline;
 				var departureLocation = data.departureLocation;
 				var arrivalLocation = data.arrivalLocation;
@@ -137,8 +135,6 @@ $(document).ready(function () {
 				}, 350);
 			},
 			error: function (data) {
-				console.log(data.responseText);
-
 				var response = data.responseText;
 				var message = $('span[class="message"]');
 
@@ -291,7 +287,6 @@ function successUpdateForm(position) {
 			inputDeparture.val(data.address);
 		},
 		error: function (data) {
-			console.log(data.responseText);
 			var response = data.responseText;
 			var message = $('span[class="message"]');
 			switch (response) {
@@ -308,7 +303,6 @@ function successUpdateForm(position) {
 
 //Geolocation error function
 function showError(error) {
-	console.log(error);
 	var alertWrap = $(".alert-wrap");
 	$(".get-position").show();
 	$(".loading-position").hide();

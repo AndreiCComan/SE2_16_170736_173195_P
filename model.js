@@ -1,5 +1,4 @@
-/** Import Node.js module
- */
+// Import Node.js module
 var polyline = require('polyline-encoded');
 
 /**
@@ -38,6 +37,5 @@ var buildObjectStructureDirections = function (result) {
 }
 
 
-/** Export this module
-*/
+// Export model function
 exports.buildObjectStructureDirections = buildObjectStructureDirections;

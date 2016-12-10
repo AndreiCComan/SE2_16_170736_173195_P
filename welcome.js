@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
  */
 app.set('port', (process.env.PORT || 5000));
 
-/** Set set the port at which the Node.js app will listen
+/** Set the port at which the Node.js app will listen
  */
 app.listen(app.get("port"), function () {
 	console.log("Server running at port " + this.address().port);
@@ -60,9 +60,8 @@ app.post("/getMap", function (req, res) {
 		//call the API
 		googleMapsUtil.directions(
 			departure,
-			arrival, {
-				mode: mode
-			},
+			arrival, 
+			{ mode: mode},
 			function (err, result) {
 				if (err) { //check Service availability
 					res.status(503).send("ServiceDirectionsUnavailable");
@@ -126,7 +125,14 @@ app.use("/", function (req, res) {
 	res.end("./index.html");
 });
 
-//Check Parameters Functions
+/**
+ * @brief Check the /getMap passed parameters
+ * @param departure -> Departure address
+ * @param arrival 	-> Arrival address
+ * @param mode 		-> Transit mode
+ * @return true if the parameters are not empty, not undefined and not number
+ 		   false otherwise
+ */
 function checkParametersGetMap(departure, arrival, mode) {
 	if (departure == "" ||
 		departure == undefined ||
@@ -142,6 +148,13 @@ function checkParametersGetMap(departure, arrival, mode) {
 		return false;
 }
 
+/**
+ * @brief Check the /getUserLocation passed parameters
+ * @param lat	-> latitude coordinate
+ * @param lng	-> longitude coordinate
+ * @return true if the parameters are not empty, not undefined and not string
+ 		   false otherwise
+ */
 function checkParametersGetUserLocation(lat, lng) {
 	if (lat == "" ||
 		lat == undefined ||

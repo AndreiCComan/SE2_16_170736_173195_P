@@ -55,9 +55,9 @@ app.post("/getMap", function (req, res) {
 	console.log("Mode received = " + mode);
 	console.log("-----------------------------------");
 
-	if (departure == "" || arrival == "" || mode == "") { //check parameters emptiness
-		res.send(449).send("formNotFilled");
-	} else {
+	if (checkParametersGetMap(departure, arrival, mode)) //check valid parameters
+		res.status(449).send("notValidForm");
+	else {
 		//replace spaces with + in order to use the API. The latter does not accept spaces in the request.
 		departure = departure.replace(/ /g, '+');
 		arrival = arrival.replace(/ /g, '+');
@@ -105,9 +105,9 @@ app.post("/getUserLocation", function (req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	var lat = req.body.latitude;
 	var lng = req.body.longitude;
-	if (lat == "" || lng == "") { //check parameters emptiness
-		res.send(449).send("notValidCoordinates");
-	} else {
+	if (checkParametersGetUserLocation(lat, lng)) //check valid parameters
+		res.status(449).send("notValidCoordinates");
+	else {
 		console.log("-----------------------------------");
 		console.log("Latitude received = " + lat);
 		console.log("Longitude received = " + lng);
@@ -130,6 +130,7 @@ app.post("/getUserLocation", function (req, res) {
 				}
 			}
 		);
+		console.log("Response sent back to the requester!");
 	}
 });
 
@@ -139,3 +140,31 @@ app.post("/getUserLocation", function (req, res) {
 app.use("/", function (req, res) {
 	res.end("./index.html");
 });
+
+//Check Parameters Functions
+function checkParametersGetMap(departure, arrival, mode) {
+	if (departure == "" ||
+		departure == undefined ||
+		!isNaN(departure) ||
+		arrival == "" ||
+		arrival == undefined ||
+		!isNaN(arrival) ||
+		mode == "" ||
+		mode == undefined ||
+		!isNaN(mode))
+		return true;
+	else
+		return false;
+}
+
+function checkParametersGetUserLocation(lat, lng) {
+	if (lat == "" ||
+		lat == undefined ||
+		isNaN(lat) ||
+		lng == "" ||
+		lng == undefined ||
+		isNaN(lng))
+		return true;
+	else
+		return false;
+}

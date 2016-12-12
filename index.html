@@ -71,20 +71,20 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img class="img-responsive" src="https://goo.gl/CCrMhd" />
+                        <img class="img-responsive" src="https://goo.gl/CCrMhd" alt="faculty of law" />
                         <figcaption>
                             <h2>FACULTY OF <br/>
                                 <span>LAW</span>
                             </h2>
                             <p>
-								<a data-goto="map" data-street="Via Giuseppe Verdi, 53, 38122 Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
+                                <a data-goto="map" data-street="Via Giuseppe Verdi, 53, 38122 Trento" href="#map"><span><i class="fa fa-map-marker" aria-hidden="true"></i> click here for map indications</span></a>
                             </p>
                         </figcaption>
                     </figure>
                 </div>
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img src="https://goo.gl/tWkgzs" />
+                        <img src="https://goo.gl/tWkgzs" alt="department of physics" />
                         <figcaption>
                             <h2>DEPARTMENT OF <br/>
                                 <span>PHYSICS</span>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img src="https://goo.gl/JXDhaF" />
+                        <img src="https://goo.gl/JXDhaF" alt="department of mathematics" />
                         <figcaption>
                             <h2>DEPARTMENT OF <br/>
                                 <span>MATHEMATICS</span>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img src="https://goo.gl/jefd41" />
+                        <img src="https://goo.gl/jefd41" alt="department of information engineering and computer science" />
                         <figcaption>
                             <h2>DEPARTMENT OF <br/>
                                 <span>INFORMATION ENGINEERING</span> <br/> AND <br/>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img src="https://goo.gl/fgjlPs" />
+                        <img src="https://goo.gl/fgjlPs" alt="department of economics and management" />
                         <figcaption>
                             <h2>DEPARTMENT OF <br/>
                                 <span>ECONOMICS</span> AND
@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 figure-wrap slideanim">
                     <figure class="figure-effect">
-                        <img src="https://goo.gl/qDZNWl" />
+                        <img src="https://goo.gl/qDZNWl" alt="department of sociology and social research" />
                         <figcaption>
                             <h2>DEPARTMENT OF <br/>
                                 <span>SOCIOLOGY</span> <br/> AND <br/>
@@ -192,10 +192,10 @@
                     <div class="form-style">
                         <form id="mapForm">
                             <input type="text" name="departure" placeholder="Departure" required/>
-							<span class="get-position">
+                            <span class="get-position">
 								<i class="fa fa-street-view" data-toggle="tooltip" title="Get your position" aria-hidden="true"></i>
 							</span>
-							<span class="loading-position"><i class="fa fa-cog fa-spin" aria-hidden="true"></i></span>
+                            <span class="loading-position"><i class="fa fa-cog fa-spin" aria-hidden="true"></i></span>
                             <br/>
                             <input type="text" name="arrival" placeholder="Arrival" required/>
                             <br/>
@@ -204,8 +204,8 @@
                         </form>
                     </div>
                 </div>
-			</div>	
-			<div class="row">
+            </div>
+            <div class="row">
                 <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
                     <div class="bus-result">
                         <div class="bus-number bus1 text-center">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-				<div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
                     <div class="bus-result">
                         <div class="bus-number bus5 text-center">
                             <p>3</p>
@@ -236,7 +236,7 @@
                         </div>
                     </div>
                 </div>
-				<div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
+                <div class="col-md-2 col-sm-3 col-xs-6 bus-result-wrap">
                     <div class="bus-result">
                         <div class="bus-number bus6 text-center">
                             <p>8</p>
@@ -304,7 +304,7 @@
             </div>
             <div class="row info-message">
                 <div class="col-lg-2 col-lg-offset-3 col-md-4 col-md-offset-1 col-sm-4 col-offset-sm-1 col-xs-5 col-offset-xs-0 text-center">
-                    <img class="img-responsive emoji" src="/img/confused.svg" style="float:right;" />
+                    <img class="img-responsive emoji" src="/img/confused.svg" style="float:right;" alt="info message: it seems that you have not made any choice" />
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-6 col-xs-7 push-left">
                     <div class="row">
@@ -312,21 +312,23 @@
                     </div>
                     <div class="row">
                         <p class="noChoiceSubTitle">Press this button in order to choose your department</p>
-                        <a href="#departments" data-goto="departments"><button class="goToDepButton"><i class="fa fa-arrow-up" aria-hidden="true"></i> GO UP</button></a>
+                        <a href="#departments" data-goto="departments">
+                            <button class="goToDepButton"><i class="fa fa-arrow-up" aria-hidden="true"></i> GO UP</button>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="row info-content">
                 <div class="col-md-4 col-sm-6 image-selection" data-id="canteen">
-                    <img class="img-responsive" src="https://goo.gl/62wnOI" />
+                    <img class="img-responsive" src="https://goo.gl/62wnOI" alt="university canteen" />
                     <h2>UNIVERSITY <br/><span>CANTEEN</span></h2>
                 </div>
                 <div class="col-md-4 col-sm-6 image-selection" data-id="library">
-                    <img class="img-responsive" src="https://goo.gl/8Q9ZvV" />
+                    <img class="img-responsive" src="https://goo.gl/8Q9ZvV" alt="university library" />
                     <h2>UNIVERSITY <br/><span>LIBRARY</span></h2>
                 </div>
                 <div class="col-md-4 col-sm-6 image-selection" data-id="structure">
-                    <img class="img-responsive" src="https://goo.gl/8koQOF" />
+                    <img class="img-responsive" src="https://goo.gl/8koQOF" alt="university structure" />
                     <h2>UNIVERSITY <br/><span>STRUCTURES</span></h2>
                 </div>
             </div>
@@ -339,7 +341,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <img class="img-responsive" src="https://goo.gl/62wnOI" />
+                            <img class="img-responsive" src="https://goo.gl/62wnOI" alt="university canteen" />
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -361,7 +363,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <img class="img-responsive" src="https://goo.gl/8Q9ZvV" />
+                            <img class="img-responsive" src="https://goo.gl/8Q9ZvV" alt="university library" />
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -383,7 +385,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-offse-t0 slideanim">
                         <div class="embed-responsive embed-responsive-16by9 emb-vid">
-                            <img class="img-responsive" src="https://goo.gl/8koQOF" />
+                            <img class="img-responsive" src="https://goo.gl/8koQOF" alt="university structures" />
                         </div>
                     </div>
                     <div class="col-md-8">

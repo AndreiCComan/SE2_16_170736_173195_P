@@ -1,0 +1,10 @@
+La funzione login dovrebbe mandare il path del file da utilizzare nella response come argomento della funzione response riga 17 e 76. In questo modo si evita di utilizzare una variabile globale.
+
+Riga 18 
+	identare meglio ed in modo più comprensibile l'oggetto
+
+Riga 21 
+	gli statement di ogni case all'interno dello switch potrebbero essere identati su più righe per una migliore lettura
+
+Riga 76 
+	manca la descrizione del parametro User della funzione response
